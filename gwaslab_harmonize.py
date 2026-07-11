@@ -92,3 +92,10 @@ ss.fill_data(to_fill=["OR","OR_95L","OR_95U"], overwrite=True)
 ss.sort_coordinate()
 ss.sort_column()
 ss.to_format(path=output_file, fmt="gwaslab")
+lead_variants = ss.get_lead(
+    windowsizekb=500,
+    sig_level=5e-8,
+    anno=True,
+    build="38",
+    source="ensembl")
+lead_variants.to_csv("lead_vars.txt", index=False, sep='\t')
