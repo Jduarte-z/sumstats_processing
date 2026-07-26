@@ -8,8 +8,8 @@ threads=12
 
 
 
-input_file="nalls_38_inhouseLiftover_harmonized.gwaslab.tsv.gz"
-output_file="nalls_38_inhouseLiftover_harmonized_rsidAssigned"
+input_file="tractorNAT_phase2_harmonized.gwaslab.tsv.gz"
+output_file="tractorNAT_phase2_harmonized_with_rsIDs"
 
 cores=12
 
@@ -49,7 +49,7 @@ ss.sort_coordinate()
 # "all": Overwrite all rsIDs for eligible variants, regardless of existing values. Use with caution as this will replace all existing rsID assignments.
 
 ss.assign_rsid2(
-vcf_path="/home/duartej3/beegfs/JF/LPD_DATA/reference4ProjectedPCA/dbSNP/GCF_000001405.40_release157.gz",
+vcf_path="/home/duartej3/isilon/0.JF/Backups/LPD_DATA/june_2026/LPD_DATA/reference4ProjectedPCA/dbSNP/GCF_000001405.40_release157.gz",
 threads=threads,
 overwrite="empty",
 )
