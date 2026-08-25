@@ -9,11 +9,11 @@ threads=8
 
 input_file="Mama_hg38_harmonized_withOR_SE.gwaslab.tsv.gz"
 output_file="manhattan"
-plot="genesis.png"
+plot="manhattan.png"
 title="MAMA GP2"
 
 ss = gl.Sumstats(
-    input_file, fmt="gwaslab",
+    input_file, , build="38", fmt="gwaslab",
     verbose=True,
 )
 
