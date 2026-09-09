@@ -110,7 +110,8 @@ def process_ancestry(anc):
         # Highlight loci
         highlight1                =pinpointsRandom if pinpointsRandom else None, 
         highlight2                =pinpointsFixed if pinpointsFixed else None, 
-
+        # highlight_color1          ="#E70B0B",     # black for random-specific novel hits
+        # highlight_color2          ="#E70B0B",     # black for fixed-specific novel hits
         repel_force               =0.1,
         # Fix x and y axes
         xtight                    =False,
