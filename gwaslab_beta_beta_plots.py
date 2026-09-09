@@ -1,7 +1,7 @@
 from adjustText import adjust_text
 import gwaslab as gl
 
-# =============================================================================
+# Thanks to Emily for providing the OG code, here some edits for a specific proyect. 
 # Beta-beta replication plots 
 #
 # Two complementary, symmetric plots. They differ ONLY in which study's lead
@@ -13,9 +13,9 @@ import gwaslab as gl
 # Convention: the ANCHOR study (whose hits are tested) is path1 = X axis;
 #             the OTHER study (where we look for replication) is path2 = Y axis.
 # All plotted lead variants are labeled (anno=True).
-# =============================================================================
 
-# ---- Input files ------------------------------------------------------------
+
+# input
 amr_full = "../amr_genotools_regenie_harmonized.gwaslab.tsv.gz"
 lpd_full = "../lpd_saige_meta_fixed_harmonized.gwaslab.tsv.gz"
 amr_lead = "../lead_amr_genotools_regenie_harmonized.gwaslab.tsv.gz"
@@ -24,11 +24,11 @@ lpd_lead = "../lead_lpd_saige_meta_fixed_harmonized.gwaslab.tsv.gz"
 amr_name = "amr_genotools_regenie"
 lpd_name = "lpd_saige_meta_fixed"
 
-# ---- Load the two full sumstats once (used for effect estimates on both axes)
+# Load the two full sumstats once (used for effect estimates on both axes)
 amr = gl.Sumstats(amr_full, fmt="gwaslab", sep="\t", build="38")
 lpd = gl.Sumstats(lpd_full, fmt="gwaslab", sep="\t", build="38")
 
-# ---- Lead SNP lists (the "hits" of each study) ------------------------------
+# Lead SNP lists (the "hits" of each study)
 amr_lead_snps = gl.Sumstats(amr_lead, fmt="gwaslab", sep="\t", build="38")["SNPID"].tolist()
 lpd_lead_snps = gl.Sumstats(lpd_lead, fmt="gwaslab", sep="\t", build="38")["SNPID"].tolist()
 print(f"amr lead SNPs: {len(amr_lead_snps)}")
@@ -75,14 +75,14 @@ def replication_plot(anchor_full, other_full, lead_snps, anchor_name, other_name
     )
 
 
-# --- Nominal replication (P<0.05) -------------------------------------------
+# Nominal replication (P<0.05) 
 # Plot 1: lpd hits -> replicate in amr?  (lpd on X)
 replication_plot(lpd, amr, lpd_lead_snps, lpd_name, amr_name)
 
 # Plot 2: amr hits -> replicate in lpd?  (amr on X)
 replication_plot(amr, lpd, amr_lead_snps, amr_name, lpd_name)
 
-# --- Replication tested at the discovery threshold (P<1e-6) ------------------
+# Replication tested at the discovery threshold (P<1e-6)
 # Plot 3: lpd hits -> replicate in amr at P<1e-6?  (lpd on X)
 replication_plot(lpd, amr, lpd_lead_snps, lpd_name, amr_name, sig_level=1e-6)
 
