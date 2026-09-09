@@ -1,4 +1,5 @@
 # # plot miami gwama tractor + highlight novel hits v4.1.6
+#Thanks to Mariam for her help for making the plots more pretty 
 import os
 from datetime import datetime
 import pandas as pd
@@ -8,15 +9,14 @@ import matplotlib as mpl
 HIGHLIGHT = True          # set to False to skip novel-hit highlighting
 COLORS    = ["#000000", "#ABABAB"]
 
-# -------------------------
-# Tweakable config
-# -------------------------
+# config
 FIGSIZE = (9, 5)         
 BASE_W  = 9              
 SCALE   = FIGSIZE[0] / BASE_W
 
-DPI = 600                 # DPI = sharpness/file size, not layout
-PAD_IN = 0.25 * SCALE     # padding scales with figure size
+DPI = 600                 
+PAD_IN = 0.25 * SCALE     
+# padding scales with figure size
 
 
 # #mpl.rcParams["axes.titlesize"] = 20 * SCALE
@@ -69,9 +69,9 @@ fig,log = gl.plot_miami2(
     gl2,
     id1                       ="SNPID",
     id2                       ="SNPID",
-    suffixes                  =['_R', '_F'],  # R - Random, F - Fixed
+    suffixes                  =['_R', '_F'],  
     build                     ="38",
-    mode                      ="m",           # Options "mqq", "qqm"
+    mode                      ="m",           
     cut                       =11,
     #skip                      =5,
     # Significance Lines
@@ -80,14 +80,16 @@ fig,log = gl.plot_miami2(
     additional_line           =[1e-6],
     additional_line_color     =["gray"],
     # Titles
-    titles                    = None,          # Set to none to add side titles later
+    titles                    = None,          
+    # Set to none to add side titles later
     # Fonts
     font_family               ="DejaVu Sans",
     fontsize                  =8 * SCALE,
     # Annotation
     anno1                     ="GENENAME",
     anno2                     ="GENENAME",
-    anno_style                ="right",       # Options: "tight", "expand"
+    anno_style                ="right",       
+    # Options: "tight", "expand"
     anno_fontsize             =10 * SCALE,
     #anno_sig_level            =ANNO_SIG_LEVEL.get(anc, ANNO_SIG_LEVEL_DEFAULT),
     # Colors
