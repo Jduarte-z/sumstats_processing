@@ -6,7 +6,8 @@ import pandas as pd
 import gwaslab as gl
 import matplotlib as mpl
 
-HIGHLIGHT = True          # set to False to skip novel-hit highlighting
+HIGHLIGHT = True          
+# set to False to skip novel-hit highlighting
 
 # Per-ancestry color pairs [dark, light] for alternating chromosomes
 COLORS_DEFAULT = ["#000000", "#ABABAB"]
@@ -21,9 +22,7 @@ COLORS_BY_ANC = {
 # Ancestries to process
 ANCS = ["AFR", "EUR", "NAT"]  # adjust to your ancestry list
 # ANCS = ['NAT']
-# -------------------------
-# Tweakable config
-# -------------------------
+# Config
 FIGSIZE = (9, 5)         
 BASE_W  = 9              
 SCALE   = FIGSIZE[0] / BASE_W
@@ -60,14 +59,14 @@ def process_ancestry(anc):
 
     colors_anc = COLORS_BY_ANC.get(anc, COLORS_DEFAULT)
 
-    inRandom   = os.path.join(IN_DIR,  f"gwama_random_{anc}_firstPass.gwaslab.tsv.gz")  # TODO: adjust pattern if needed
-    inFixed    = os.path.join(IN_DIR,  f"gwama_fixed_{anc}_firstPass.gwaslab.tsv.gz")   # TODO: adjust pattern if needed
+    inRandom   = os.path.join(IN_DIR,  f"gwama_random_{anc}_firstPass.gwaslab.tsv.gz")  
+    inFixed    = os.path.join(IN_DIR,  f"gwama_fixed_{anc}_firstPass.gwaslab.tsv.gz")  
     outPlot    = os.path.join(OUT_DIR, f"gwama_{anc}_miami")
 
     if HIGHLIGHT:
-        novelhitsRandom_file = os.path.join(IN_DIR, f"gwama_random_{anc}_novelHits.tsv")  # TODO: adjust pattern if needed
+        novelhitsRandom_file = os.path.join(IN_DIR, f"gwama_random_{anc}_novelHits.tsv")  
         pinpointsRandom = load_pinpoints(novelhitsRandom_file)
-        novelhitsFixed_file = os.path.join(IN_DIR, f"gwama_fixed_{anc}_novelHits.tsv")    # TODO: adjust pattern if needed
+        novelhitsFixed_file = os.path.join(IN_DIR, f"gwama_fixed_{anc}_novelHits.tsv")    
         pinpointsFixed = load_pinpoints(novelhitsFixed_file)
     else:
         pinpointsRandom = []
@@ -82,9 +81,10 @@ def process_ancestry(anc):
         gl2,
         id1                       ="SNPID",
         id2                       ="SNPID",
-        suffixes                  =['_R', '_F'],  # R - Random, F - Fixed
+        suffixes                  =['_R', '_F'],  
+        # R - Random, F - Fixed
         build                     ="38",
-        mode                      ="m",           # Options "mqq", "qqm"
+        mode                      ="m",          
         cut                       =11,
         #skip                      =5,
         # Significance Lines
@@ -93,14 +93,16 @@ def process_ancestry(anc):
         additional_line           =[5e-8],
         additional_line_color     =["gray"],
         # Titles
-        titles                    = None,          # Set to none to add side titles later
+        # Set to none to add side titles later
+        titles                    = None,          
         # Fonts
         font_family               ="DejaVu Sans",
         fontsize                  =8 * SCALE,
         # Annotation
         anno1                     ="GENENAME",
         anno2                     ="GENENAME",
-        anno_style                ="right",       # Options: "tight", "expand"
+        # Options: "tight", "expand"
+        anno_style                ="right",       
         anno_fontsize             =10 * SCALE,
         anno_sig_level            =1e-6,
         # Colors
@@ -108,8 +110,7 @@ def process_ancestry(anc):
         # Highlight loci
         highlight1                =pinpointsRandom if pinpointsRandom else None, 
         highlight2                =pinpointsFixed if pinpointsFixed else None, 
-        #highlight_color1          ="#F30A0A",     # black for random-specific novel hits
-        #highlight_color2          ="#F30A0A",     # black for fixed-specific novel hits
+
         repel_force               =0.1,
         # Fix x and y axes
         xtight                    =False,
