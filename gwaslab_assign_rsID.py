@@ -2,7 +2,7 @@
 import gwaslab as gl
 
 
-gl.options.set_option("data_directory", "/home/duartej3/beegfs/JF/programs/gwaslab/references_gwaslab416/")
+gl.options.set_option("data_directory", "/home/duartej3/isilon/0.JF/Backups/programs/gwaslab/references_gwaslab416/")
 
 threads=12
 
