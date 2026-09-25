@@ -8,8 +8,8 @@ threads=12
 
 
 
-input_file="tractorNAT_phase2_harmonized.gwaslab.tsv.gz"
-output_file="tractorNAT_phase2_harmonized_with_rsIDs"
+input_file="r12_mama_mr_mega.maf1.gwaslab.tsv.gz"
+output_file="r12_mama_mr_mega.maf1.with_rsIDs_hg38"
 
 cores=12
 
@@ -27,6 +27,7 @@ ss = gl.Sumstats(input_file, build="38",
     OR="OR",
     OR_95L="OR_95L",
     OR_95U="OR_95U",
+    other=['P_HET',	'DIRECTION', 'Ncohort',	'chisq_ancestry_het',	'ndf_ancestry_het',	'chisq_residual_het',	'ndf_residual_het',	'P-value_residual_het',	'lnBF'],
     sep="\t",
     na_values=["NA","."],
     verbose=True
@@ -83,7 +84,7 @@ assert ss.data["rsID"].notna().all(), "Some rsIDs are still NA after replacement
 #Tidy output 
 ss.sort_coordinate()
 ss.sort_column()
-ss.to_format(path=output_file, fmt="gwaslab")
+ss.to_format(path=output_file, fmt="gwaslab", cols=['P_HET','DIRECTION','Ncohort','chisq_ancestry_het','ndf_ancestry_het','chisq_residual_het','ndf_residual_het','P-value_residual_het','lnBF'])
 lead_variants = ss.get_lead(
     windowsizekb=500,
     sig_level=5e-8,
